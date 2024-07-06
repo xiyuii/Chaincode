@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex; /* 使用 flex 布局以便水平排列 */
+            align-items: center;
+            gap: 10px; /* 按钮和下拉菜单之间的间距 */
+        }
+
+        .dropdown select, .dropdown button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .dropdown select {
+            width: 180px; /* 调整宽度以适应内容 */
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .dropdown button {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+    <script>
+        function submitContent() {
+            var userInput = document.getElementById('userInput').value;
+            var selectedOption = document.getElementById('modelSelect').value;
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_input: userInput,
+                    modelSelect: selectedOption
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerHTML = 'Server Response: ' + data.message;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function goToAnotherPage() {
+            window.location.href = '/api_market';
+        }
+
+        function sendDataToBackend() {
+            // 定义要发送的数据
+            const dataToSend = {
+                info: 'Clear'
+            };
+
+            // 发送 POST 请求到后端
+            fetch('/send_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Data sent to backend successfully: ' + data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Please Input Your Question</h1>
+    <input type="text" id="userInput" placeholder="Text">
+    <button onclick="submitContent()">Submit</button>
+    <div id="response"></div>
+
+    <div class="dropdown">
+        <select id="modelSelect" onchange="submitContent()">
+            <option value="" disabled selected>Select Model</option>
+            <option value="QW-Max">QW-Max</option>
+            <option value="ChatGpt-3.5">ChatGpt-3.5</option>
+        </select>
+        <button onclick="goToAnotherPage()">AI Model Market</button>
+        <button onclick="sendDataToBackend()">Clear All History</button> <!-- 新增按钮 -->
+    </div>
+</body>
+</html>
