@@ -4,15 +4,18 @@
   |
   |——templates                //模板文件
   |     |——controller.html    //主页面，可以就行对话
-  |     |——api_market.html    //到时候api请求就在这罗列出来
+  |     |——market.html        //到时候api请求就在这罗列出来（现在只有添加）
   |
   |——static                   //静态脚本文件
-  |     |——style.css          //css文件，风格化
-  |     |——scripts.js         //javascript文件，用于协调前后端，实现数据传输和动态刷新
+  |     |——css                //css文件，风格化
+  |     |——js                 //javascript文件，用于协调前后端，实现数据传输和动态刷新
   |
   |——ai_modle.py              //大模型的api，目前用来初始化
-  |
   |——app.py                   //主函数，调用flask架构
+  |——format.py                //添加各种模型的调用规范
+  |——scripts_add.py           //更新模型
+  |——requirements.txt         //安装必要的python库（python版本3.6及以上）
+  |——add_ai_modle.sh          //更新文件脚本
   |
   |——lib                      //到时候放一些链码之类的
        |——data                //目前存储问题记录
@@ -22,14 +25,4 @@
   ```
   cmd
   python3 -m venv <venv name>
-  ```
-
-  需要的库如下（确保安装Python3.6版本及以上）：
-  ```
-  pip install flask
-  pip install dashscope
-  pip install http
-  pip install pathlib
-  pip install json
-  pip install time
   ```

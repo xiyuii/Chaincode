@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from dashscope import Application
 import json
-from pathlib import Path
+
 
 class QW_MAX:
     def __init__(self, question, path):
@@ -57,4 +57,3 @@ class CHATGPT_3_5:
         else:
             return response.output
         
-    

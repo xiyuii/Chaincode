@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI FUN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_market.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Submit Your AI Model</h1>
+        <form id="dataForm">
+            <label for="input1">Model Name:</label>
+            <input type="text" id="input1" name="input1" placeholder="Enter your model name" required>
+
+            <label for="input2">Model API:</label>
+            <input type="text" id="input2" name="input2" placeholder="Enter your model api" required>
+
+            <label for="input3">Robot ID (Optional):</label>
+            <input type="text" id="input3" name="input3" placeholder="Enter your robot id (if it exists)" required>
+
+            <label for="dropdown">Select Model Type:</label>
+            <select id="dropdown" name="dropdown">
+                <option value="Qwen-max">Qwen-max</option>
+                <option value="ChatGpt-3.5">ChatGpt-3.5</option>
+                <option value="Wenxin">Wenxin</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <button name="backButton" id="backButton">Back to Home</button> 
+    </div>
+
+    <script src="{{ url_for('static', filename='js/sctipt_market.js') }}"></script>
+</body>
+</html>
