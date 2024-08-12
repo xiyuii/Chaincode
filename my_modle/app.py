@@ -62,6 +62,8 @@ def ADD_NEW_MODLE():
     # 添加
     new_modle.ADD_In_AI()
     new_modle.ADD_In_Main()
+    new_modle.ADD_IN_CONTROLLER()
+    new_modle.ADD_IN_MARKET()
     print('new')
     return jsonify({'message': 'Model added successfully'})
 
@@ -101,4 +103,4 @@ def submit():
     return jsonify({'message': html_response})  # 将结果返回html
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

@@ -25,5 +25,5 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
 });
 
 document.getElementById('backButton').addEventListener('click', function() {
-    window.location.href = 'controller.html';
+    window.location.href = '/';
 });

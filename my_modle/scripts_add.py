@@ -53,3 +53,45 @@ class {self.name}:
         # 写回文件
         with open(file_path, 'w') as file:
             file.write(updated_content)
+    
+    def ADD_IN_CONTROLLER(self):
+        # 向controller.html内追加
+        # 定义要插入的新内容
+        new_content = f'''            <option value='{self.name}'>{self.name}</option>
+                <add_in_here></add_in_here>\n'''
+
+        # 定义标记
+        marker = '<add_in_here></add_in_here>'
+
+        # 读取文件内容
+        file_path = 'templates/controller.html'  # 替换为你的文件路径
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        # 使用正则表达式查找标记并插入新内容
+        updated_content = re.sub(f'({marker})', rf'\1\n{new_content}', content)
+
+        # 写回文件
+        with open(file_path, 'w') as file:
+            file.write(updated_content)
+
+    def ADD_IN_MARKET(self):
+        # 向market.html中追加
+        # 定义要插入的新内容
+        new_content = f'''            <option value='{self.name}'>{self.name}</option>
+                <add_in_here></add_in_here>\n'''
+
+        # 定义标记
+        marker = '<add_in_here></add_in_here>'
+
+        # 读取文件内容
+        file_path = 'templates/market.html'  # 替换为你的文件路径
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        # 使用正则表达式查找标记并插入新内容
+        updated_content = re.sub(f'({marker})', rf'\1\n{new_content}', content)
+
+        # 写回文件
+        with open(file_path, 'w') as file:
+            file.write(updated_content)

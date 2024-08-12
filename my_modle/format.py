@@ -35,9 +35,34 @@ def add_new_model():
     """
 
     # New Model Here
+    Chat_GPT_3_5 = """
+
+    def history(self):
+        content = self.path.read_text()
+        history_content = json.loads(content)
+        history_response = ''
+        for value in history_content.values():
+            history_response = f'''{value}
+{history_response}'''
+        return history_response
     
+    def call_agent_app(self):
+        history_resposne=self.history
+
+        openai.api_key = self.api
+        resposne = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            message=[
+                {'role': 'system', 'content': self.promot}
+                {'role': 'user', 'content': f'这是以前的回答{history_response}，回答时以此为参考，但不要有任何提及，只回答这个问题：{self.question}'}
+            ]
+        )
+
+        return response['choices'][0]['message']['content']
+"""
 
     dict_ai = {}
     dict_ai['Qwen-max'] = Qwen_max
+    dict_ai['ChatGpt-3.5'] = Chat_GPT_3_5
     content = json.dumps(dict_ai)
     path.write_text(content)
