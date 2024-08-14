@@ -1,57 +1,108 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7d8fe;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: #333;
 }
 
 .container {
-    max-width: 500px;
+    width: 100%;
+    max-width: 600px;
     margin: auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    padding: 30px;
+    background-color: #b9b6b6;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-.container h1 {
+h1 {
+    font-size: 24px;
     margin-bottom: 20px;
+    color: #d988f8;
+    font-weight: 700;
 }
 
-.container label {
-    display: block;
-    margin: 10px 0 5px;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container input[type="text"],
-.container select {
+label {
     width: 100%;
-    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
     box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.container input[type="submit"],
-.container button {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+input[type="submit"], #backButton {
+    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    color: #fff;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
 }
 
-.container button {
-    background-color: #008CBA;
+input[type="submit"]:hover, #backButton:hover {
+    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.container input[type="submit"]:hover,
-.container button:hover {
-    background-color: #45a049;
+select {
+    font-size: 16px;
+    border-radius: 8px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #f4c4f3;
+    box-shadow: 0 0 5px rgba(248, 137, 232, 0.5);
+}
+
+button {
+    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    width: 100%;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

@@ -15,7 +15,7 @@
   |——app.py                            //主函数，调用flask架构
   |——format.py                         //添加各种模型的调用规范
   |——scripts_add.py                    //更新模型
-  |——requirements.txt                  //安装必要的python库（python版本3.6及以上）
+  |——requirements.txt                  //安装必要的python库（python版本3.6及以上，最好在python3.12以下，可能版本太高会有一些问题）
   |——add_ai_modle.sh                   //更新文件脚本
   |
   |——lib                               //到时候放一些链码之类的

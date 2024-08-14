@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2ac418ea-33a8-4c7d-b0da-a91474cbdd08" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/my_modle/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/add_ai_modle.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/ai_modle.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/ai_modle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/format.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/format.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/lib/data/modle_format.json" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/lib/data/modle_format.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/scripts_add.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/scripts_add.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/static/css/style_controller.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/static/css/style_controller.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/templates/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/templates/controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_modle/templates/market.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_modle/templates/market.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2kbqAfAO6Zwv49a7h5nyaAAHdv2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2ac418ea-33a8-4c7d-b0da-a91474cbdd08" name="更改" comment="" />
+      <created>1723562483807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723562483807</updated>
+    </task>
+    <servers />
+  </component>
+</project>

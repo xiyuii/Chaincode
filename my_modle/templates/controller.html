@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Model Selector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_controller.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div class="input-container">
-        <h1>Please Input Your Question</h1>
-        <input type="text" id="userInput" placeholder="Text">
-        <button onclick="submitContent()">Submit</button>
-    </div>
-    <div id="response"></div>
-
-    <div class="dropdown">
+    <div class="navbar">
         <button onclick="goToAnotherPage()">AI Model Market</button>
         <button onclick="sendDataToBackend()">Clear All History</button>
         <select id="modelSelect" onchange="submitContent()">
@@ -23,8 +17,17 @@
             <option value="QW-Max">QW-Max</option>
             <option value="ChatGpt-3.5">ChatGpt-3.5</option>
             <add_in_here></add_in_here>
-            
+
         </select>
+    </div>
+
+    <div class="container">
+        <div id="response"></div>
+        <div class="input-container">
+            <h1>Please Input Your Question</h1>
+            <input type="text" id="userInput" placeholder="Type your question here">
+            <button onclick="submitContent()">Submit</button>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/script_controller.js') }}"></script>

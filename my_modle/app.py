@@ -1,37 +1,30 @@
 from flask import Flask, jsonify, request, render_template
 from pathlib import Path
+from ai_using import AI_MODLE
 import format
 import scripts_add
-import ai_modle
 import json
 import time
 import markdown
-import re
 
 app = Flask(__name__)
-path = Path('lib/data/history.json')  # 存放历史问答
-path_modle_format = Path('lib/data/modle_format.json')  # 存放范式
+path = Path('lib/data/history.json')  # 加载历史回答
+path_modle_format = Path('lib/data/modle_format.json')  # 范式信息
 local_time = time.localtime()
-LOG_IN_TIME = time.strftime("%Y-%m-%d %H:%M:%S", local_time)  # 记录当前打开浏览器的时间，防止载入之前的数据
+LOG_IN_TIME = time.strftime("%Y-%m-%d %H:%M:%S", local_time)  # 加载本地时间，防止打开时加载以前的信息
 format.add_new_model()
 
-def AI_MODLE(option='QW_Max', user_input='Hello', path=''):  # 选择模型
-    if option == 'QW-Max':
-        return ai_modle.QW_MAX(user_input, path)
-    # Insert into this line
-
-
-def initialize_path(path):  # 初始化history文件
+def initialize_path(path):  # 加载所需文件
     if not path.exists():
         path.write_text(json.dumps({}))
 
 initialize_path(path)
 
 @app.route('/')
-def controller():  # 渲染界面
+def controller():  # 渲染页面
     return render_template('controller.html')
 
-@app.route('/send_data', methods=["POST"])  # 消除历史问答
+@app.route('/send_data', methods=["POST"])  # 清楚历史信息
 def clear_out():
     path.write_text(json.dumps({}))
     return jsonify({'message': 'History cleared'})
@@ -43,64 +36,63 @@ def submit_ai():
 @app.route('/submit_api', methods=["POST"])
 def ADD_NEW_MODLE():
     data = request.get_json()
-    # 名称
+    # name
     INPUT_BASICDATA_NAME = data.get('input1', '')
     # api
     INPUT_BASICDATA_API = data.get('input2', '')
     # robot id
     INPUT_BASICDATA_ROBOTID = data.get('input3', '')
-    # 模型选择
+    # 大模型信息
     INPUT_BASICDATA_MODLE = data.get('dropdown', '')
 
-    # 读取范式
-    content = path_modle_format.read_text()
+    # 读取规范
+    content = path_modle_format.read_text(encoding='utf-8')
     all_modle = json.loads(content)
 
     format_selected = all_modle[INPUT_BASICDATA_MODLE]
-    new_modle = scripts_add.ADD_MODLE(INPUT_BASICDATA_NAME, INPUT_BASICDATA_API,
+    new_modle = scripts_add.ADD_MODLE(INPUT_BASICDATA_MODLE, INPUT_BASICDATA_NAME, INPUT_BASICDATA_API,
                                     format_selected, INPUT_BASICDATA_ROBOTID)
-    # 添加
+    # 重新加载
     new_modle.ADD_In_AI()
     new_modle.ADD_In_Main()
     new_modle.ADD_IN_CONTROLLER()
-    new_modle.ADD_IN_MARKET()
     print('new')
     return jsonify({'message': 'Model added successfully'})
 
-@app.route('/submit', methods=["POST"])  # 调用api实现本地化
+@app.route('/submit', methods=["POST"])  # 发送新加入的模型信息
 def submit():
-    data = request.get_json()  # 选择大模型
+    data = request.get_json()  # 加载用户输入
     option = data.get('modelSelect', '')
-    user_input = data.get('user_input', '')  # 接受用户输入
+    user_input = data.get('user_input', '')  
 
     if user_input == '':
         user_input = 'Hello'
 
-    ai_response = AI_MODLE(option, user_input, path)  # 实例化AI大模型
-    response = ai_response.call_agent_app()  # 输出
+    ai_response = AI_MODLE(option, user_input, path)  # ai大模型调用的初始化
+    response = ai_response.call_agent_app()  
 
     response_history = {}
 
     if path.read_text().strip():
         content = path.read_text()
-        response_history = json.loads(content)  # 读取内容
+        response_history = json.loads(content)  # 加载历史信息
     current_time = time.localtime()
 
-    QUESTION_TIME = time.strftime("%Y-%m-%d %H:%M:%S", current_time)  # 以时间作为键值
+    QUESTION_TIME = time.strftime("%Y-%m-%d %H:%M:%S", current_time)  # 将回答信息的时间写入
     response_history[QUESTION_TIME] = response['text']
 
-    history_content = json.dumps(response_history)  # 将回答存入history.json中
+    history_content = json.dumps(response_history) 
     path.write_text(history_content)
 
-    final_response = ''  # 仅加载打开浏览器时的所有回答
+    final_response = ''  # 最后一次的回答，默认为空
     for date_time, content in response_history.items():
         if date_time > LOG_IN_TIME:
             final_response = f"{final_response}\n\n{content}"
 
-    # 将Markdown文本转换为HTML
+    # 将markdown内容渲染为html页面内容
     html_response = markdown.markdown(final_response)
     
-    return jsonify({'message': html_response})  # 将结果返回html
+    return jsonify({'message': html_response})  # 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=7880)

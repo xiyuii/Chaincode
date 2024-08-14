@@ -1,77 +1,181 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7d8fe;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: #333;
 }
 
-.input-container {
-    text-align: center;
-    margin-bottom: 20px;
+.navbar {
+    background-color: #f2b4f7;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.input-container input[type="text"] {
-    width: 50%;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: all 0.3s;
-}
-
-.input-container input[type="text"]:focus {
-    width: 60%;
-    height: auto;
-}
-
-.input-container button {
-    padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
+.navbar button,
+.navbar select {
+    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
+    color: #fff;
+    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.input-container button:hover {
-    background-color: #45a049;
+.navbar select {
+    color: #000; /* 设置文字颜色为黑色 */
+    width: 200px; /* 增加 select 框的宽度 */
+    height: 50px; /* 增加 select 框的高度 */
+    font-size: 16px; /* 增加字体大小 */
+    border-radius: 8px; /* 使 select 框的边角更圆滑 */
 }
 
-.dropdown {
-    position: relative;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.dropdown select, .dropdown button {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+.navbar select:focus {
     outline: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    border-color: #f4c4f3;
+    box-shadow: 0 0 5px rgba(248, 137, 232, 0.5);
 }
 
-.dropdown select {
+.navbar select option {
+    background-color: #f4f7fa; /* 背景色 */
+    color: #333; /* 文字颜色 */
+    padding: 10px;
+}
+
+.navbar select option:hover {
+    background-color: #d988f8; /* 悬停时的背景色 */
+    color: #fff; /* 悬停时的文字颜色 */
+}
+
+.navbar select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    padding: 12px;
     width: 200px;
-    background-color: #4CAF50;
-    color: white;
+    height: 50px;
+    border-radius: 8px; /* 使选择框的边角更加圆滑 */
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dropdown button {
-    background-color: #008CBA;
-    color: white;
+.navbar select:focus,
+.navbar select:hover {
+    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 和 focus 时的渐变颜色 */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar select option {
+    border-radius: 0; /* 使选项框的形状为方形 */
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto; /* 启用垂直滚动条 */
+    max-height: calc(100vh - 120px); /* 保留顶部导航栏和底部输入框的空间 */
 }
 
 #response {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    white-space: pre-wrap;
+    width: 100%;
+    max-width: 800px; /* 增大信息框的最大宽度 */
+    background-color: #fff;
+    padding: 30px; /* 增加内边距 */
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* 启用垂直滚动条 */
+    max-height: 100%; /* 确保内容溢出时可以滚动 */
+    font-family: 'Roboto', sans-serif; /* 使用更美观的字体 */
+    font-size: 18px; /* 增加字体大小 */
+    line-height: 1.6; /* 增加行高 */
+    position: relative; /* 使其子元素绝对定位时参考 */
+}
+
+#response .markdown-container {
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #f9f9f9; /* 背景色 */
+    padding: 20px; /* 内边距 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+}
+
+#response .markdown-container h2 {
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #d988f8;
+}
+
+#response .markdown-container p {
+    margin: 10px 0;
+}
+
+.input-container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: auto;
+    text-align: center;
+    padding-bottom: 30px;
+    position: relative; /* 相对定位，用于绝对定位的滚动条 */
+}
+
+.input-container h1 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif; /* 使用更美观的字体 */
+}
+
+.input-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    display: block;
+    box-sizing: border-box; /* 包括内边距和边框 */
+    overflow-y: auto; /* 启用垂直滚动条 */
+}
+
+.input-container input[type="text"]:focus {
+    outline: none;
+    border-color: #d988f8;
+    box-shadow: 0 0 5px rgba(217, 136, 248, 0.5);
+}
+
+button {
+    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 状态下的渐变颜色 */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
