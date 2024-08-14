@@ -42,6 +42,8 @@ def ADD_NEW_MODLE():
     INPUT_BASICDATA_API = data.get('input2', '')
     # robot id
     INPUT_BASICDATA_ROBOTID = data.get('input3', '')
+    # promot
+    INPUT_BASICDATA_PROMOT = data.get('input4', '')
     # 大模型信息
     INPUT_BASICDATA_MODLE = data.get('dropdown', '')
 
@@ -66,22 +68,22 @@ def submit():
     user_input = data.get('user_input', '')  
 
     if user_input == '':
-        user_input = 'Hello'
+        user_input = '你好'
 
-    ai_response = AI_MODLE(option, user_input, path)  # ai大模型调用的初始化
-    response = ai_response.call_agent_app()  
+    ai_response = AI_MODLE(option, user_input, path)  # ai大模型调用的初始化  
+    response = ai_response.call_agent_app()
 
     response_history = {}
 
     if path.read_text().strip():
-        content = path.read_text()
+        content = path.read_text(encoding='utf-8')
         response_history = json.loads(content)  # 加载历史信息
     current_time = time.localtime()
 
     QUESTION_TIME = time.strftime("%Y-%m-%d %H:%M:%S", current_time)  # 将回答信息的时间写入
     response_history[QUESTION_TIME] = response['text']
 
-    history_content = json.dumps(response_history) 
+    history_content = json.dumps(response_history, ensure_ascii=False, indent=4) 
     path.write_text(history_content)
 
     final_response = ''  # 最后一次的回答，默认为空
