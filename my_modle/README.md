@@ -28,6 +28,14 @@
   ```
   cmd
   python3 -m venv <venv name>
+
+  # Linux环境
+  source <venv name>/bin/activate
+
+  # Windows环境
+  <venv name>\Scripts\activate
+
+  # 退出虚拟环境均为'deactivate'
   ```
 
 
