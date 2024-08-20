@@ -1,0 +1,37 @@
+[
+    {
+        // userID string, modelID string, version string, owner string, license string, price int, description string
+        "invoke": "RegisterModel",
+        "args": ["model3", "v1.0", "user1", "MIT", 0, "A model for predicting fruit quality"]
+    },
+    {
+        // userID string, userType string, wallet string, permission string
+        "invoke": "RegisterUser",
+        "args": ["user3", "developer", "wallet3", "full"]
+    },
+    {
+        // userID string
+        "invoke": "GetUser",
+        "args": ["user2"]
+    },
+    {
+        // userID string
+        "invoke": "GetUserInfo",
+        "args": ["user2"]
+    },
+    {
+        // userID string, modelID string, inputData string
+        "invoke": "InvokeModel",
+        "args": ["model3", "user2", "input_data_for_model"]
+    },
+    {
+        // modelID string
+        "invoke": "GetModel",
+        "args": ["model3"]
+    },
+    {
+        // modelID string
+        "invoke": "GetModelHistory",
+        "args": ["model3"]
+    }
+]
