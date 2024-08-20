@@ -9,7 +9,6 @@ import (
     "net/http"
     "time"
 
-    "github.com/golang/protobuf/ptypes"
     "github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
@@ -19,7 +18,7 @@ type SmartContract struct {
 }
 
 // 注册用户
-func (s *SmartContract) RegisterUser(ctx contractapi.TransactionContextInterface, userID string, userType string, wallet string, permission string) error {
+func (s *SmartContract) RegisterUser(ctx contractapi.TransactionContextInterface, userID string, userType string, wallet string) error {
 	user := User{
 		UserID:     userID,
 		UserType:   userType,
@@ -53,7 +52,7 @@ func (s *SmartContract) RegisterModel(ctx contractapi.TransactionContextInterfac
 }
 
 // 调用模型
-func (s *SmartContract) InvokeModel(ctx contractapi.TransactionContextInterface, modelID string, userID string, inputData string) (string, error) {
+func (s *SmartContract) InvokeModel(ctx contractapi.TransactionContextInterface, modelID string, userID string, inputData string, outputData string) (string, error) {
     // 获取模型信息
     model, err := s.GetModel(ctx, modelID)
     if err != nil {
@@ -67,73 +66,45 @@ func (s *SmartContract) InvokeModel(ctx contractapi.TransactionContextInterface,
     }
 
 
-	// 模拟API调用
-	apiURL := model.API
+    // 记录调用结果
+    err = s.RecordInvocation(ctx, modelID, userID, inputData, outputData)
+    if err != nil {
+        return "", err
+    }
 
-	// 准备请求数据
-	requestData := map[string]string{
-		"input":  inputData,
-	}
-	requestBody, err := json.Marshal(requestData)
-	if err != nil {
-		return "", fmt.Errorf("failed to marshal request data: %v", err)
-	}
-
-	// 发送HTTP POST请求到API
-	resp, err := http.Post(apiURL, "application/json", bytes.NewBuffer(requestBody))
-	if err != nil {
-		return "", fmt.Errorf("failed to call API: %v", err)
-	}
-	defer resp.Body.Close()
-
-	// 读取API响应
-	responseBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read API response: %v", err)
-	}
-
-	// 检查API响应状态码
-	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("API call failed with status: %s, response: %s", resp.Status, string(responseBody))
-	}
-
-	// 将响应作为输出数据
-	outputData := fmt.Sprintf(
-		"Model %s (version %s) invoked by user %s with input %s. API Response: %s",
-		model.ModelID, model.Version, user.UserID, inputData, string(responseBody),
-	)
-	
-	return outputData, nil // 确保数据返回
+    // 返回调用结果
+    return outputData, nil
 }
-
-
 
 // 记录调用结果
 func (s *SmartContract) RecordInvocation(ctx contractapi.TransactionContextInterface, modelID string, userID string, inputData string, outputData string) error {
-	// 获取时间戳
-	txtime, err := ctx.GetStub().GetTxTimestamp()
-	if err != nil {
-		return err
-	}
-	timeLocation, _ := time.LoadLocation("Asia/Shanghai")
-	timestamp := time.Unix(txtime.Seconds, 0).In(timeLocation).Format("2006-01-02 15:04:05")
+    // 获取时间戳
+    txtime, err := ctx.GetStub().GetTxTimestamp()
+    if err != nil {
+        return err
+    }
+    timeLocation, _ := time.LoadLocation("Asia/Shanghai")
+    timestamp := time.Unix(txtime.Seconds, 0).In(timeLocation).Format("2006-01-02 15:04:05")
 
-	invocation := map[string]string{
-		"modelID":    modelID,
-		"userID":     userID,
-		"inputData":  inputData,
-		"outputData": outputData,
-		"timestamp":  timestamp,
-	}
+    // 创建调用记录
+    invocation := map[string]string{
+        "modelID":    modelID,
+        "userID":     userID,
+        "inputData":  inputData,
+        "outputData": outputData,
+        "timestamp":  timestamp,
+    }
 
-	invocationAsBytes, err := json.Marshal(invocation)
-	if err != nil {
-		return err
-	}
+    // 序列化并存储调用记录
+    invocationAsBytes, err := json.Marshal(invocation)
+    if err != nil {
+        return err
+    }
 
-	txID := ctx.GetStub().GetTxID()
-	return ctx.GetStub().PutState(txID, invocationAsBytes)
+    txID := ctx.GetStub().GetTxID()
+    return ctx.GetStub().PutState(txID, invocationAsBytes)
 }
+
 
 // 获取用户信息
 func (s *SmartContract) GetUser(ctx contractapi.TransactionContextInterface, userID string) (*User, error) {
