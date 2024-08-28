@@ -10,13 +10,16 @@ type User struct {
 
 // 定义模型结构体
 type Model struct {
-	ModelID      string `json:"modelID"`      // 提交模型的名称
-	API            string `json:"api"`            // 调用所需的API
-	Version      string     `json:"version"`
-	Owner        string	    `json:"owner"`
-	SubmissionTime string `json:"submissionTime"` // 提交时间
-	Description  string     `json:"description"`
+	ModelID       string `json:"modelID"`
+	API           string `json:"api"`
+	Version       string `json:"version"`
+	Owner         string `json:"owner"`
+	SubmissionTime string `json:"submissionTime"`
+	CallID        string `json:"callID"`
+	Description   string `json:"description"`
+	ModelName     string `json:"modelName"`  
 }
+
 
 // 历史查询结果结构体
 type HistoryQueryResult struct {

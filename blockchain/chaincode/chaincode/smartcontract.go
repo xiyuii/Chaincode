@@ -33,23 +33,23 @@ func (s *SmartContract) RegisterUser(ctx contractapi.TransactionContextInterface
 	
 }
 
-// 注册模型
-func (s *SmartContract) RegisterModel(ctx contractapi.TransactionContextInterface, modelID string, api string, version string, owner string, submissionTime string, callID string, description string) error {
+func (s *SmartContract) RegisterModel(ctx contractapi.TransactionContextInterface, modelID string, modelName string, api string, version string, owner string, submissionTime string, callID string, description string) error {
 	model := Model{
-		ModelID:     modelID,
-		API:       api,
-		Version:     version,
-		Owner:       owner, // 虽然保留这个字段，但不使用它
+		ModelName:     modelName,  
+		API:           api,
+		ModelID:       modelID,
+		Version:       version,
+		Owner:         owner, 
 		SubmissionTime: submissionTime,
-		Description: description,
+		Description:   description,
 	}
 	modelAsBytes, err := json.Marshal(model)
 	if err != nil {
 		return err
 	}
 	return ctx.GetStub().PutState(modelID, modelAsBytes)
-	
 }
+
 
 // 调用模型
 func (s *SmartContract) InvokeModel(ctx contractapi.TransactionContextInterface, modelID string, userID string, inputData string, outputData string) (string, error) {
@@ -184,3 +184,4 @@ func (s *SmartContract) GetModelHistory(ctx contractapi.TransactionContextInterf
 	}
 	return records, nil
 }
+
