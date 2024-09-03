@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Model Selector</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_controller.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="navbar">
-        <button onclick="goToAnotherPage()">AI Model Market</button>
-        <button onclick="sendDataToBackend()">Clear All History</button>
+        <button onclick="goToAnotherPage()">你的AI</button>
+        <button onclick="sendDataToBackend()">清除历史信息</button>
         <select id="modelSelect" onchange="submitContent()">
-            <option value="" disabled selected>Select Model</option>
+            <option value="" disabled selected>选择模型</option>
             <option value="QW-Max">QW-Max</option>
             <option value="ChatGpt-3.5">ChatGpt-3.5</option>
-            <add_in_here></add_in_here>
-
+            <!-- Add more options as needed -->
         </select>
     </div>
 
     <div class="container">
         <div id="response"></div>
         <div class="input-container">
-            <h1>Please Input Your Question</h1>
-            <input type="text" id="userInput" placeholder="Type your question here">
-            <button onclick="submitContent()">Submit</button>
+            <textarea id="userInput" placeholder="请输入你的问题"></textarea>
+            <button onclick="submitContent()">提交</button>
         </div>
     </div>
 

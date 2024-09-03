@@ -28,17 +28,10 @@
   ```
   cmd
   python3 -m venv <venv name>
-
-  # Linux环境
-  source <venv name>/bin/activate
-
-  # Windows环境
-  <venv name>\Scripts\activate
-
-  # 退出虚拟环境均为'deactivate'
   ```
 
 
   > ## 现在还差的工作：
   > + 将链码和我写的这个网站关联起来(在链码网站输入信息，在我的网站里面呈现出来)。
+  > + 网站的自动更新程序，需要能使用脚本语言把新添加的模型加入到网站中并使用(目前已经加入了python脚本中，还需要加入到html中)
   > + 他那个链码貌似没有下载大模型功能
