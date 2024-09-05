@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f7d8fe;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,7 +23,7 @@ body {
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #d988f8;
+    color: #000000;
     font-weight: 700;
 }
 
@@ -52,8 +52,8 @@ input[type="text"], select {
 }
 
 input[type="submit"], #backButton {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3);
-    color: #fff;
+    background: linear-gradient(145deg, #84edff, #ffffff);
+    color: #000;
     padding: 12px 20px;
     border: none;
     border-radius: 12px;
@@ -66,7 +66,7 @@ input[type="submit"], #backButton {
 }
 
 input[type="submit"]:hover, #backButton:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    background: linear-gradient(145deg, #9affff, #ffffff);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -83,13 +83,13 @@ select {
 
 select:focus {
     outline: none;
-    border-color: #f4c4f3;
-    box-shadow: 0 0 5px rgba(248, 137, 232, 0.5);
+    border-color: #9affff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 button {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3);
-    color: #fff;
+    background: linear-gradient(145deg, #9affff, #ffffff);
+    color: #000;
     padding: 12px 20px;
     border: none;
     border-radius: 12px;
@@ -102,7 +102,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    background: linear-gradient(145deg, #9affff, #ffffff);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

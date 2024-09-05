@@ -1,37 +1,34 @@
-[
-    {
-        // userID string, modelID string, version string, owner string, license string, price int, description string
-        "invoke": "RegisterModel",
-        "args": ["model3", "v1.0", "user1", "MIT", 0, "A model for predicting fruit quality"]
+[     
+    { 
+
+        //userID string, traceability_code string, arg1 string, arg2 string, arg3 string, arg4 string, arg5 string
+        "invoke": "Uplink",
+ 
+        "args": ["6","tracecode3","3apple","Shanxi","2018-01-01","2018-10-01","Tom"]
     },
     {
-        // userID string, userType string, wallet string, permission string
-        "invoke": "RegisterUser",
-        "args": ["user3", "developer", "wallet3", "full"]
+        "invoke":"RegisterUser",
+        "args" :["6","farmer","3"]
     },
     {
-        // userID string
-        "invoke": "GetUser",
-        "args": ["user2"]
+        "invoke":"GetUserType",
+        "args" :["2"]
     },
     {
-        // userID string
-        "invoke": "GetUserInfo",
-        "args": ["user2"]
+        "invoke":"GetUserInfo",
+        "args" :["2"]
     },
     {
-        // userID string, modelID string, inputData string
-        "invoke": "InvokeModel",
-        "args": ["model3", "user2", "input_data_for_model"]
+        "invoke":"GetFruitList",
+        "args" :["2"]
     },
     {
-        // modelID string
-        "invoke": "GetModel",
-        "args": ["model3"]
+        "invoke":"GetFruitInfo",
+        "args" :["tracecode3"]
     },
     {
-        // modelID string
-        "invoke": "GetModelHistory",
-        "args": ["model3"]
+        "invoke":"GetFruitHistory",
+        "args" :["tracecode3"]
     }
+
 ]

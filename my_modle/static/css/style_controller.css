@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f7d8fe;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@ body {
 }
 
 .navbar {
-    background-color: #f2b4f7;
+    background-color: #6dd8f3;
     padding: 15px;
     display: flex;
     justify-content: space-between;
@@ -20,8 +20,8 @@ body {
 
 .navbar button,
 .navbar select {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
-    color: #fff;
+    background: linear-gradient(145deg, #6df3f3, #fdfcfd); /* 渐变色：紫粉色 */
+    color: #000;
     padding: 10px 15px;
     border: none;
     border-radius: 12px;
@@ -42,8 +42,8 @@ body {
 
 .navbar select:focus {
     outline: none;
-    border-color: #f4c4f3;
-    box-shadow: 0 0 5px rgba(248, 137, 232, 0.5);
+    border-color: #6df3f3;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .navbar select option {
@@ -53,15 +53,15 @@ body {
 }
 
 .navbar select option:hover {
-    background-color: #d988f8; /* 悬停时的背景色 */
-    color: #fff; /* 悬停时的文字颜色 */
+    background-color: #6df3f3; /* 悬停时的背景色 */
+    color: #000; /* 悬停时的文字颜色 */
 }
 
 .navbar select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    background: linear-gradient(145deg, #6df3f3, #ffffff);
     padding: 12px;
     width: 200px;
     height: 50px;
@@ -72,7 +72,7 @@ body {
 
 .navbar select:focus,
 .navbar select:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 和 focus 时的渐变颜色 */
+    background: linear-gradient(145deg, #6df3f3, #ffffff); /* 调整 hover 和 focus 时的渐变颜色 */
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -120,7 +120,7 @@ body {
     margin-top: 0;
     font-size: 22px;
     font-weight: 700;
-    color: #d988f8;
+    color: #6df3f3;
 }
 
 #response .markdown-container p {
@@ -156,13 +156,13 @@ body {
 
 .input-container input[type="text"]:focus {
     outline: none;
-    border-color: #d988f8;
-    box-shadow: 0 0 5px rgba(217, 136, 248, 0.5);
+    border-color: #6df3f3;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 button {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
-    color: #fff;
+    background: linear-gradient(145deg, #6df3f3, #ffffff); /* 渐变色：紫粉色 */
+    color: #000;
     padding: 10px 20px;
     border: none;
     border-radius: 12px;
@@ -175,7 +175,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 状态下的渐变颜色 */
+    background: linear-gradient(145deg, #6df3f3, #ffffff); /* 调整 hover 状态下的渐变颜色 */
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
