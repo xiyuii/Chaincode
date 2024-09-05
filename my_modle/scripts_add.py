@@ -16,7 +16,6 @@ class ADD_MODLE:
 
     def ADD_In_AI(self):
         # 向存放ai模型的文件追加
-        # 修改add_ai_modle.sh内的内容
         added_content = f'''
 class {self.name}:
     def __init__(self, question, path, promot):
@@ -86,3 +85,53 @@ class {self.name}:
         with open(csv_path, 'a', encoding='utf-8', newline='') as file_new:
             csvwriter = csv.writer(file_new)
             csvwriter.writerow(csv_content)
+
+class CREATE_MODEL:
+    def __init__(self, model_name, model_format):
+        self.name = model_name
+        self.format = model_format
+
+    def add_in_format(self):
+        # 向存放ai模型的文件追加
+        new_content = f'''{self.name} = """
+        {self.format}
+        """
+    # New Model Here
+
+'''
+        # 定义标记
+        marker = '# New Model Here'
+
+        # 读取文件内容
+        file_path = 'format.py'  # 替换为你的文件路径
+        # 读取文件内容
+        file_path = 'ai_using.py'  # 替换为你的文件路径
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+
+        # 使用正则表达式查找标记并插入新内容
+        updated_content = re.sub(f'({marker})', rf'\1\n{new_content}', content)
+
+        # 写回文件
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(updated_content)
+
+
+        add_content = f"dict_ai['{self.name}'] = {self.name}
+    # Add new model"
+        # 定义标记
+        marker = '# Add new model'
+
+        # 读取文件内容
+        file_path = 'format.py'  # 替换为你的文件路径
+        # 读取文件内容
+        file_path = 'ai_using.py'  # 替换为你的文件路径
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+
+        # 使用正则表达式查找标记并插入新内容
+        updated_content = re.sub(f'({marker})', rf'\1\n{add_content}', content)
+
+        # 写回文件
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(updated_content)

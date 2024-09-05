@@ -34,7 +34,6 @@ def add_new_model():
 
     """
 
-    # New Model Here
     Chat_GPT_3_5 = """
 
     def history(self):
@@ -60,9 +59,11 @@ def add_new_model():
 
         return response['choices'][0]['message']['content']
 """
+    # New Model Here
 
     dict_ai = {}
     dict_ai['Qwen-max'] = Qwen_max
     dict_ai['ChatGpt-3.5'] = Chat_GPT_3_5
+    #Add new model
     content = json.dumps(dict_ai, ensure_ascii=False, indent=4)
     path.write_text(content, encoding='utf-8')

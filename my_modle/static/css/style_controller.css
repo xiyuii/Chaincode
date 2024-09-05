@@ -1,5 +1,5 @@
 body {
-    font-family: 'Nunito', sans-serif; /* 使用更圆润的字体 */
+    font-family: 'Poppins', sans-serif;
     background-color: #f7d8fe;
     margin: 0;
     padding: 0;
@@ -20,7 +20,7 @@ body {
 
 .navbar button,
 .navbar select {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -33,30 +33,52 @@ body {
 }
 
 .navbar select {
-    color: #000;
-    width: 200px;
-    height: 50px;
-    font-size: 16px;
-    border-radius: 8px;
+    color: #000; /* 设置文字颜色为黑色 */
+    width: 200px; /* 增加 select 框的宽度 */
+    height: 50px; /* 增加 select 框的高度 */
+    font-size: 16px; /* 增加字体大小 */
+    border-radius: 8px; /* 使 select 框的边角更圆滑 */
+}
+
+.navbar select:focus {
+    outline: none;
+    border-color: #f4c4f3;
+    box-shadow: 0 0 5px rgba(248, 137, 232, 0.5);
+}
+
+.navbar select option {
+    background-color: #f4f7fa; /* 背景色 */
+    color: #333; /* 文字颜色 */
+    padding: 10px;
+}
+
+.navbar select option:hover {
+    background-color: #d988f8; /* 悬停时的背景色 */
+    color: #fff; /* 悬停时的文字颜色 */
+}
+
+.navbar select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background: linear-gradient(145deg, #d988f8, #f4c4f3);
     padding: 12px;
+    width: 200px;
+    height: 50px;
+    border-radius: 8px; /* 使选择框的边角更加圆滑 */
+    font-size: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar select:focus,
 .navbar select:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 和 focus 时的渐变颜色 */
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .navbar select option {
-    background-color: #f4f7fa;
-    color: #333;
-    padding: 10px;
+    border-radius: 0; /* 使选项框的形状为方形 */
 }
 
 .container {
@@ -66,32 +88,32 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow-y: auto;
-    max-height: calc(100vh - 120px);
+    overflow-y: auto; /* 启用垂直滚动条 */
+    max-height: calc(100vh - 120px); /* 保留顶部导航栏和底部输入框的空间 */
 }
 
 #response {
     width: 100%;
-    max-width: 800px;
+    max-width: 800px; /* 增大信息框的最大宽度 */
     background-color: #fff;
-    padding: 30px;
+    padding: 30px; /* 增加内边距 */
     margin-bottom: 20px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-    max-height: 100%;
-    font-family: 'Nunito', sans-serif; /* 使用更圆润的字体 */
-    font-size: 18px;
-    line-height: 1.6;
-    position: relative;
+    overflow-y: auto; /* 启用垂直滚动条 */
+    max-height: 100%; /* 确保内容溢出时可以滚动 */
+    font-family: 'Roboto', sans-serif; /* 使用更美观的字体 */
+    font-size: 18px; /* 增加字体大小 */
+    line-height: 1.6; /* 增加行高 */
+    position: relative; /* 使其子元素绝对定位时参考 */
 }
 
 #response .markdown-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 8px; /* 圆角 */
+    background-color: #f9f9f9; /* 背景色 */
+    padding: 20px; /* 内边距 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
 }
 
 #response .markdown-container h2 {
@@ -105,37 +127,22 @@ body {
     margin: 10px 0;
 }
 
-#response pre {
-    background-color: #282c34;
-    color: #abb2bf;
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
-}
-
-#response code {
-    background-color: #e06c75;
-    color: #ffffff;
-    padding: 2px 4px;
-    border-radius: 4px;
-}
-
 .input-container {
     width: 100%;
     max-width: 400px;
     margin-top: auto;
     text-align: center;
     padding-bottom: 30px;
-    position: relative;
+    position: relative; /* 相对定位，用于绝对定位的滚动条 */
 }
 
 .input-container h1 {
     margin-bottom: 20px;
     font-weight: 600;
-    font-family: 'Nunito', sans-serif; /* 使用更圆润的字体 */
+    font-family: 'Roboto', sans-serif; /* 使用更美观的字体 */
 }
 
-.input-container textarea {
+.input-container input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -143,22 +150,18 @@ body {
     border-radius: 12px;
     font-size: 16px;
     display: block;
-    box-sizing: border-box;
-    resize: vertical;
-    min-height: 50px;
-    max-height: 200px;
-    overflow-y: auto;
-    line-height: 1.5;
+    box-sizing: border-box; /* 包括内边距和边框 */
+    overflow-y: auto; /* 启用垂直滚动条 */
 }
 
-.input-container textarea:focus {
+.input-container input[type="text"]:focus {
     outline: none;
     border-color: #d988f8;
     box-shadow: 0 0 5px rgba(217, 136, 248, 0.5);
 }
 
 button {
-    background: linear-gradient(145deg, #d988f8, #f4c4f3);
+    background: linear-gradient(145deg, #d988f8, #f4c4f3); /* 渐变色：紫粉色 */
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -172,7 +175,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(145deg, #f4c4f3, #d988f8);
+    background: linear-gradient(145deg, #f4c4f3, #d988f8); /* 调整 hover 状态下的渐变颜色 */
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

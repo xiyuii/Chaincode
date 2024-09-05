@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request, render_template
-from markdown_it import MarkdownIt
 from pathlib import Path
 from ai_using import AI_MODLE
 import format
 import scripts_add
 import json
 import time
+import markdown
 
 app = Flask(__name__)
 path = Path('lib/data/history.json')  # 加载历史回答
@@ -20,19 +20,11 @@ def initialize_path(path):  # 加载所需文件
 
 initialize_path(path)
 
-md = MarkdownIt()
-
-def preprocess_markdown(text):
-    # 替换一些常见的 Markdown 格式错误
-    # 例如，确保列表项以 '-' 开始，标题后有空行等
-    text = text.replace('\n*', '\n\n*')  # 确保列表项前有空行
-    return text
-
 @app.route('/')
 def controller():  # 渲染页面
     return render_template('controller.html')
 
-@app.route('/send_data', methods=["POST"])  # 清除历史信息
+@app.route('/send_data', methods=["POST"])  # 清楚历史信息
 def clear_out():
     path.write_text(json.dumps({}))
     return jsonify({'message': 'History cleared'})
@@ -44,21 +36,35 @@ def submit_ai():
 @app.route('/submit_api', methods=["POST"])
 def ADD_NEW_MODLE():
     data = request.get_json()
+    # name
     INPUT_BASICDATA_NAME = data.get('input1', '')
+    # api
     INPUT_BASICDATA_API = data.get('input2', '')
+    # robot id
     INPUT_BASICDATA_ROBOTID = data.get('input3', '')
+    # promot
     INPUT_BASICDATA_PROMOT = data.get('input4', '')
+    # 大模型信息
     INPUT_BASICDATA_MODLE = data.get('dropdown', '')
 
+    # 新的大模型信息
+    # 大模型名称
+    INPUT_NEWDATA_NAME = data.get('extraModelName', '')
+    INPUT_NEWDATA_FORMAT = data.get('extraModelSpec', '')
+
+    # 读取规范
     content = path_modle_format.read_text(encoding='utf-8')
     all_modle = json.loads(content)
 
     format_selected = all_modle[INPUT_BASICDATA_MODLE]
     new_modle = scripts_add.ADD_MODLE(INPUT_BASICDATA_MODLE, INPUT_BASICDATA_NAME, INPUT_BASICDATA_API,
                                     format_selected, INPUT_BASICDATA_ROBOTID, INPUT_BASICDATA_PROMOT)
+    add_model = scripts_add.CREATE_MODEL(INPUT_NEWDATA_NAME, INPUT_NEWDATA_FORMAT)
+    # 重新加载
     new_modle.ADD_In_AI()
     new_modle.ADD_In_Main()
     new_modle.ADD_IN_CONTROLLER()
+    add_model.add_in_format()
     print('new')
     return jsonify({'message': 'Model added successfully'})
 
@@ -66,12 +72,12 @@ def ADD_NEW_MODLE():
 def submit():
     data = request.get_json()  # 加载用户输入
     option = data.get('modelSelect', '')
-    user_input = data.get('user_input', '')
+    user_input = data.get('user_input', '')  
 
     if user_input == '':
         user_input = '你好'
 
-    ai_response = AI_MODLE(option, user_input, path)  # ai大模型调用的初始化
+    ai_response = AI_MODLE(option, user_input, path)  # ai大模型调用的初始化  
     response = ai_response.call_agent_app()
 
     response_history = {}
@@ -84,7 +90,7 @@ def submit():
     QUESTION_TIME = time.strftime("%Y-%m-%d %H:%M:%S", current_time)  # 将回答信息的时间写入
     response_history[QUESTION_TIME] = response['text']
 
-    history_content = json.dumps(response_history, ensure_ascii=False, indent=4)
+    history_content = json.dumps(response_history, ensure_ascii=False, indent=4) 
     path.write_text(history_content)
 
     final_response = ''  # 最后一次的回答，默认为空
@@ -92,13 +98,10 @@ def submit():
         if date_time > LOG_IN_TIME:
             final_response = f"{final_response}\n\n{content}"
 
-    # 预处理 markdown 内容
-    final_response = preprocess_markdown(final_response)
-
-    # 将 markdown 内容渲染为 HTML 页面内容
-    html_response = md.render(final_response)
-
-    return jsonify({'message': html_response})
+    # 将markdown内容渲染为html页面内容
+    html_response = markdown.markdown(final_response)
+    
+    return jsonify({'message': html_response})  # 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=7880)

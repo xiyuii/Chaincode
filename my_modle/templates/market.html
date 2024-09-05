@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,33 +9,35 @@
 <body>
 
     <div class="container">
-        <h1>Submit Your AI Model</h1>
+        <h1>提交你的 AI 模型</h1>
         <form id="dataForm">
-            <label for="input1">Model Name:</label>
-            <input type="text" id="input1" name="input1" placeholder="Enter your model name" required>
+            <label for="input1">模型名称:</label>
+            <input type="text" id="input1" name="input1" placeholder="输入你的模型名称" required>
 
-            <label for="input2">Model API:</label>
-            <input type="text" id="input2" name="input2" placeholder="Enter your model api" required>
+            <label for="input2">API-KEY:</label>
+            <input type="text" id="input2" name="input2" placeholder="输入你的模型 API-KEY" required>
 
-            <label for="input3">Robot ID (Optional):</label>
-            <input type="text" id="input3" name="input3" placeholder="Enter your robot id (if it exists)" required>
+            <label for="input3">Robot ID (可选):</label>
+            <input type="text" id="input3" name="input3" placeholder="输入你的机器人 ID（如果存在）">
 
-            <label for="input4">Promot (Optional):</label>
-            <input type="text" id="input4" name="input4" placeholder="Enter your promot (if you want)" required>
+            <label for="input4">Promot (可选):</label>
+            <input type="text" id="input4" name="input4" placeholder="输入提示信息（可选）">
 
-            <label for="dropdown">Select Model Type:</label>
+            <label for="dropdown">选择模型:</label>
             <select id="dropdown" name="dropdown">
                 <option value="Qwen-max">Qwen-max</option>
                 <option value="ChatGpt-3.5">ChatGpt-3.5</option>
-                <option value="Wenxin">Wenxin</option>
             </select>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="提交">
         </form>
 
-        <button name="backButton" id="backButton">Back to Home</button> 
+        <button name="backButton" id="backButton">返回</button> 
+
+        <button id="addInputButton">添加新的基础大模型</button>
+
     </div>
 
-    <script src="{{ url_for('static', filename='js/sctipt_market.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script_market.js') }}"></script>
 </body>
 </html>
