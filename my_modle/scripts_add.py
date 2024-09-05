@@ -117,7 +117,7 @@ class CREATE_MODEL:
             file.write(updated_content)
 
 
-        add_content = f"dict_ai['{self.name}'] = {self.name}
+        add_content = f"dict_ai['{self.name}'] = {self.name}"
     # Add new model"
         # 定义标记
         marker = '# Add new model'
