@@ -10,7 +10,6 @@
         <template slot-scope="scope">
           <el-button type="primary" plain @click="downloadModel(scope.row)">下载</el-button>
           <el-button type="danger" plain @click="deleteModel(scope.row)">删除</el-button>
-          <el-button type="info" plain @click="navigateToModelUsage(scope.row)">模型使用</el-button> <!-- 新增模型使用按钮 -->
         </template>
       </el-table-column>
     </el-table>
@@ -60,11 +59,6 @@ export default {
       }).catch(error => {
         this.$message.error('模型删除失败');
       });
-    },
-    navigateToModelUsage(model) {
-      // 跳转到 7880 端口的模型使用界面
-      const url = `http://localhost:7880/model/${model.id}`;
-      window.open(url, '_blank'); // 新窗口打开模型使用页面
     }
   },
   created() {

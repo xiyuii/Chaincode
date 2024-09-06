@@ -8,8 +8,6 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-import { component } from 'vue/types/umd';
-import { title } from '@/settings';
 
 export const constantRoutes = [
   {
@@ -87,12 +85,11 @@ export const constantRoutes = [
     children: [
       {
         path: 'http://114.55.9.118:7880',
-        meta: {title: '大模型使用', icon: 'el-icon-message'}
+        meta: { title: '大模型使用', icon: 'el-icon-message' }
       }
     ]
   },
-  { path: '*', redirect: '/404', hidden: true },
-  
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
