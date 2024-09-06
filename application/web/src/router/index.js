@@ -81,9 +81,8 @@ export const constantRoutes = [
       }
     ]
   },
-  { path: '*', redirect: '/404', hidden: true },
   {
-    path: '',
+    path: 'external-link',
     component: Layout,
     children: [
       {
@@ -91,7 +90,9 @@ export const constantRoutes = [
         meta: {title: '大模型使用', icon: 'el-icon-message'}
       }
     ]
-  }
+  },
+  { path: '*', redirect: '/404', hidden: true },
+  
 ]
 
 const createRouter = () => new Router({
